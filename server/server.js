@@ -11,6 +11,6 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/restaurents', resRoute);
+app.use('/api/v1/restaurents', resRoute);
 
 app.listen(port, () => console.log('listening on port ' + port));
