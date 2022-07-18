@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import RestaurantFinder from '../apis/RestaurantFinder';
+import RestaurantFinder from '../api/RestaurantFinder';
 import { RestaurantsContext } from '../context/RestaurantsContext';
 import { useNavigate } from 'react-router-dom';
 import StarRating from './StarRating';
@@ -19,12 +19,13 @@ const RestaurantList = (props) => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDelete = async (e, id) => {
     e.stopPropagation();
     try {
-      const response = await RestaurantFinder.delete(`/deleteRestaurant/${id}`);
+      await RestaurantFinder.delete(`/deleteRestaurant/${id}`);
       setRestaurants(
         restaurants.filter((restaurant) => {
           return restaurant.id !== id;

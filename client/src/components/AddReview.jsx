@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import RestaurantFinder from '../apis/RestaurantFinder';
-import {
-  useLocation,
-  useParams,
-  useNavigate,
-  Navigate,
-} from 'react-router-dom';
+import RestaurantFinder from '../api/RestaurantFinder';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
 
 const AddReview = () => {
   const { id } = useParams();
   const location = useLocation();
   console.log(location);
-  const history = useNavigate();
+  const navigate = useNavigate();
   console.log(id);
 
   const [name, setName] = useState('');
@@ -26,10 +21,12 @@ const AddReview = () => {
         review: reviewText,
         rating,
       });
-      history('/');
-      // history.push('/');
-      // history.push(location.pathname);
-    } catch (err) {}
+      navigate('/');
+      navigate(location.pathname);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="mb-2">

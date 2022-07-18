@@ -1,12 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { RestaurantsContext } from '../context/RestaurantsContext';
-import RestaurantFinder from '../apis/RestaurantFinder';
+// import { RestaurantsContext } from '../context/RestaurantsContext';
+import RestaurantFinder from '../api/RestaurantFinder';
 
 const UpdateRestaurant = (props) => {
   const { id } = useParams();
-  let history = useNavigate();
-  const { restaurants } = useContext(RestaurantsContext);
+  let navigate = useNavigate();
+  // const { restaurants } = useContext(RestaurantsContext);
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [priceRange, setPriceRange] = useState('');
@@ -21,6 +21,7 @@ const UpdateRestaurant = (props) => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = async (e) => {
@@ -33,7 +34,8 @@ const UpdateRestaurant = (props) => {
         price_range: priceRange,
       }
     );
-    history('/');
+    console.log(updatedRestaurant);
+    navigate('/');
   };
 
   return (
