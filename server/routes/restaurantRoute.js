@@ -51,7 +51,7 @@ router.get('/getRestaurant/:id', async (req, res) => {
 });
 
 // Create Restaurent
-router.post('/createRestaurant', async (req, res) => {
+router.post('/addRestaurant', async (req, res) => {
   try {
     const results = await db.query(
       'INSERT INTO restaurants (name, location, price_range) values ($1, $2, $3) returning *',
